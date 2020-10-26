@@ -1,0 +1,461 @@
+﻿every once in a (the) while
+https://medium.com/@DylanKerler1/how-arc-works-in-rust-b06192acd0a6
+
+codility.com
+
+package main
+
+import "fmt"
+
+func main() {
+	i, j := 42, 2701
+
+	p := &i         // point to i
+	fmt.Println(*p) // read i through the pointer
+	*p = 21         // set i through the pointer
+	fmt.Println(i)  // see the new value of i
+
+	p = &j         // point to j
+	*p = *p / 37   // divide j through the pointer
+	fmt.Println(j) // see the new value of j
+}
+
+
+package main
+
+import "fmt"
+
+type Vertex struct {
+	X int
+	Y int
+}
+
+func main() {
+	v := Vertex{1, 2}
+	p := &v
+	(*p).X = 1e9
+	fmt.Println(v)
+}
+
+
+./geth --datadir "~/Library/LocalNode1" --networkid 1234 --port 11111 --nodiscover console
+./geth --datadir "~/Library/LocalNode2" --networkid 1234 --port 11112 --nodiscover console
+work/src/github.com/ethereum/go-ethereum/cmd/geth$ go run !(*_test).go
+git checkout -b sp-devel origin/sp-devel
+// отменить последний коммит
+git reset --hard HEAD~1
+git log --graph --oneline --all
+/** diffrent file between two commits  */
+git diff d5a6f4f985d643d53df0228fc951e1511ceee21d f5fc1cc1acb2959da6e18dc57e97ac5a581054ca  -- ./test/mutable_logic/buisness_layout/Accounts.spec.js
+
+/** kaspersky */
+/etc/init.d/kesl-supervisor stop
+systemctl restart kesl-supervisor
+
+#This will reset your index to HEAD^ (the previous commit) but leave your changes in the staging area
+git reset --soft HEAD^
+/* pull into non created local branch */
+git fetch  http://git.lab.local/grp-indranil/smart-contracts_v2.git devel:devel
+/* merge unrelated history commit */
+git merge --allow-unrelated-histories mm
+git merge --no-ff --no-commit <merge-branch>
+git reset HEAD myfile.txt
+git checkout -- myfile.txt
+git commit -m "merged <merge-branch>"
+// удаление из под индекса (из под отслеживания)
+git rm --cached ./target/maven-archiver -r
+git diff-tree -p CMMIT
+git diff --staged config/config.json
+git reset HEAD^   config/config.json   (сброс файла при мерже)
+/** empty-branch */
+git checkout --orphan empty-branch
+
+
+npm i -g npm-check-updates & /usr/local/nvm/v12.13.1/bin/ncu -u
+
+
+
+package main
+
+import "fmt"
+
+type Person struct {
+	Name string
+	Age  int
+}
+======
+func (p Person) String() string {
+	return fmt.Sprintf("%v (%v years)", p.Name, p.Age)
+}
+
+func main() {
+	a := Person{"Arthur Dent", 42}
+	z := Person{"Zaphod Beeblebrox", 9001}
+	fmt.Println(a, z)
+}
+
+
+cargo run -p adder
+
+
+И возможно ли проверить действительность сертификата не имея доступ к этому сертификату и к ключу клиента?
+
+Да, в подпись может дополнительно включаться: либо только сертификат клиента либо вся цепочка сертификатов либо вся цепочка без корневого сертификата. В любом из 3 случаев по сертификату клиента из подписи будет возможно проверить математическую корректность подписи. Для проверки цепочки корневые сертификаты должны быть установлены на компьютере, где проверяется подпись (на сервере), даже если корневой присутствует в подписи. Если в подпись включен только сертификат клиента, то нужно установить также и промежуточные сертификаты (иногда цепочка построится и без этого, но лучше подстраховаться). В случае подписи ГОСТ и когда клиенты пользуются разными УЦ наиболее удобен вариант, когда на сервере установлен корневой сертификат ГУЦ, на клиенте установлена вся цепочка сертификатов от ГУЦ до сертификата клиента, в подпись включены все сертификаты цепочки кроме корневого ГУЦ.
+
+==========================================================================================    
+
+Для проверки подлинности электронной подписи на компьютере, где и используется ЭЦП, обязательно должен устанавливаться корневой сертификат удостоверяющего центра. Это открытый ключ, по которому криптопровайдер понимает, какая именно организация выдала электронную подпись и к чьему реестру необходимо обращаться для проверки актуальности ЭЦП. Более того, только при наличии установленного в системе корневого сертификата на компьютер можно скопировать персональную электронную подпись (в виде открытого ключа, сгенерированного с помощью USB‑токена). Где получить и как установить корневой сертификат удостоверяющего центра?
+Что такое корневой сертификат удостоверяющего центра? Это файл, где сохранена сервисная информация об удостоверяющем центре с указанием даты его действия, сервисным интернет-адресом (через который можно связаться с реестром организации). Все эти данные предоставляются в шифрованном виде, которые использует КриптоПро CSP для проверки подлинности открытой персональной ЭЦП.
+
+Основное назначение корневого ключа – это именно проверка подлинности открытого ключа ЭЦП. Открытую подпись гражданина в теории можно украсть, но воспользоваться ею без сертификата от удостоверяющего центра – не получится. То есть, вся эта схема сделана так, чтобы предотвратить факты использования чужой ЭЦП мошенниками или просто третьими лицами.
+    
+     cades_linux_amd64.
+    
+Кратко о компонентах  КриптоПро для Linux:
+
+cprocsp-curl - Библиотека libcurl с реализацией шифрования по ГОСТ
+lsb-cprocsp-base - Основной пакет КриптоПро CSP
+lsb-cprocsp-capilite - Интерфейс CAPILite и утилиты
+lsb-cprocsp-kc1 - Провайдер криптографической службы KC1
+lsb-cprocsp-rdr - Поддержка ридеров и RNG
+cprocsp-rdr-gui-gtk - Графический интерфейс для диалоговых операций
+cprocsp-rdr-rutoken - Поддержка карт Рутокен
+cprocsp-rdr-jacarta - Поддержка карт JaCarta
+cprocsp-rdr-pcsc - Компоненты PC/SC для ридеров КриптоПро CSP
+lsb-cprocsp-pkcs11 - Поддержка PKCS11
+
+ps -A | grep stu
+grep -R --exclude-dir=node_modules 'some pattern' /path/to/search
+sudo netstat -nlp46
+top -o %MEM
+-XX:ExplicitGCInvokesConcurent
+
+/** тут прописываются модули поддержки */
+/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents
+
+/** тут вроде лицензия */
+/etc/opt/cprocsp/
+/opt/cprocsp/
+/var/opt/cprocsp/
+
+/opt/cprocsp/bin/amd64/csptest -a -c -a
+/opt/cprocsp/sbin/amd64/cpconfig -ini '\config\parameters\Protocols\TLS 1.1\Client' -add long Enabled 0
+/opt/cprocsp/sbin/amd64/cpconfig -ini '\config\parameters\Protocols\TLS 1.2\Client' -add long Enabled 0
+Односторонний ГОСТ TSL Вы можете проверить, например, на https://q.cryptopro.ru
+/etc/opt/cprocsp/trusted_sites.html 
+https://support.cryptopro.ru/
+sudo find $PWD | fgrep config64
+grep -r "enabled.sol" .
+https://www.cryptopro.ru:4444/test/tls-cli.asp
+/opt/cprocsp/bin/amd64/csptest  -tlsc -server  *.*.*.* -port 8443 -v -v
+csptest -tlsc -server torgi.gov.ru -verbose
+
+/opt/cprocsp/bin/<архитектура>/certmgr -inst -file ca.cer -store CA
+/opt/cprocsp/sbin/amd64/cpconfig
+/opt/cprocsp/sbin/amd64/cpconfig -license -view
+/opt/cprocsp/bin/amd64/csptest -card -enum -v -v
+/opt/cprocsp/bin/amd64/certmgr --list
+/opt/cprocsp/bin/amd64/certmgr -list -store uroot
+/opt/cprocsp/bin/amd64/cryptcp
+ /** СПИСОК НАСТРОЕННЫХ СЧИТЫВАТЕЛЕЙ */
+/opt/cprocsp/sbin/amd64/cpconfig -hardware reader -view
+/** УЗНАТЬ ВЕРСИЮ*/
+/opt/cprocsp/bin/amd64/csptest -keyset -verifycontext
+/** Типы провайдера */
+/opt/cprocsp/sbin/amd64/cpconfig -defprov -view_type
+/** УСТАНОВЛЕННЫЙ ПРОВАЙДЕР ПО УМОЛЧАНИЮ */
+/opt/cprocsp/sbin/amd64/cpconfig -defprov -getdef -provtype 81
+
+Ключевые контейнеры – это способ хранения закрытых ключей, реализованный в нашем продукте. Их физическое представление зависит от типа ключевого носителя (на флешке, дискете, жестком диске это директория в которой хранится набор файлов с ключевой информацией; в случае со смарт-картами – файлы в защищенной памяти смарт-карты, в случае с реестром – раздел реестра, содержащий некоторые параметры). Пароль на контейнер имеет разное значение для смарт-карт и для носителей, не являющихся смарт-картами.
+/** ПРОСМОТР КОНТЕЙНЕРОВ */
+/opt/cprocsp/bin/amd64/csptest -keyset -enum_cont -fqcn -verifyc
+csptestf -keyset -container '\\.\HDIMAGE\test' -info
+/ * Создадим контейнер * /
+/opt/cprocsp/bin/amd64/csptest -keyset -exportable  -provtype 80 -newkeyset -cont '\\.\Aktiv Co. Rutoken S 00 00\superhzz'  -keytype exchange -password 12345678  ('\\.\AKS ifdh 00 00\test') ('\\.\Aktiv Co. Rutoken S 00 00\superhzz)
+/** Запрос */
+opt/cprocsp/bin/amd64/cryptcp -creatrqst -dn "0.9.2342.19200300.100.1.1=22345201-abe8-4f60-90c8-0d43c5f6c0s9, E=boss@imperial.net, C=RU, CN=Гущин Сергей Анатольевич, O=Оператор, SN=Гущин, G=Сергей Анатольевич, L=Новосибирск" -provtype 80  -certusage "1.3.6.1.5.5.7.3.2,1.3.6.1.5.5.7.3.2.99.100.4,1.3.6.1.5.5.7.3.2.99.101.4,1.3.6.1.5.5.7.3.2.99.100.5,1.3.6.1.5.5.7.3.2.99.101.5,1.3.6.1.5.5.7.3.2.99.100.6,1.3.6.1.5.5.7.3.2.99.100.7,1.3.6.1.5.5.7.3.2.99.100.3,1.3.6.1.5.5.7.3.2.99.101.3" -exprt -nokeygen -both -ku -cont '\\.\Aktiv Co. Rutoken S 00 00\superhzz' /tmp/ggg.req
+
+/** Самоподписной сертификат с генерацией ключей */
+sudo /opt/cprocsp/bin/amd64/csptestf -keyset -newkeyset -makecert -cont '\\.\AKS ifdh 00 00\test' -keytype exchange -password 1qazXSW@3edc
+
+
+/** Просмотр доступных считывателей*/
+/opt/cprocsp/bin/amd64/csptest -enum -info -type PP_ENUMREADERS | iconv -f cp1251
+/* Просмотр доступных носителей:  */
+/opt/cprocsp/sbin/amd64/cpconfig -hardware media -view | iconv -f cp1251
+/* Считыватель HDIMAGE размещается */
+/var/opt/cprocsp/keys/<имя пользователя>/.
+
+/opt/cprocsp/sbin/amd64/cpconfig -hardware reader -view -f cp1251
+/*Просмотр сертификатов в контейнере*/
+/opt/cprocsp/bin/amd64/certmgr -list -cont '\\.\HDIMAGE\3fb88662-0c10-d721-67d8-adff49d8ffa5'
+/ * Экспот сертификата в формат DER * /
+/opt/cprocsp/bin/amd64/certmgr -export -dest stunnel_srv.cer -cont '\\.\HDIMAGE\srv_stunnel'
+/*  Просмотр личных сертификатов в хранилище */
+/opt/cprocsp/bin/amd64/certmgr -list -store uMy
+/*  Удаление личных сертификатов в хранилище */
+/opt/cprocsp/bin/amd64/certmgr -delete -store umy
+/* Просмотр корневых сертификатов*/
+/opt/cprocsp/bin/amd64/certmgr -list -store uRoot
+/*  Импорт коренных сертификатов в хранилище доверенных корневых сертификатов */
+sudo /opt/cprocsp/bin/amd64/certmgr -inst -store uroot -file "uc_tensor_44-2017.cer"
+/* Ассоциировать сертификат с контейнером, сертификат попадет в пользовательское хранилище uMy: */
+/opt/cprocsp/bin/amd64/certmgr -inst -file cert.cer -store uMy -cont '\\.\HDIMAGE\test'
+/opt/cprocsp/bin/amd64/certmgr -inst -file имя_полученного_сертификата.cer -cont '\\.\Aktiv Rutoken ECP 00 00\Shuhrat'
+/** Установка личного сертификата в контейнер*/
+/opt/cprocsp/bin/amd64/csptest -keys -cont '\\.\Aktiv Co. Rutoken S 00 00\superhzz' -keyt exchange -impcert имя_полученного_сертификата.cer
+/*Установка корневого сертификата:*/
+/opt/cprocsp/bin/amd64/certmgr -inst -store uRoot -file <путь к файлу с сертификатом>
+/** */
+sudo update-ca-certificates -f
+/** cacert */
+/usr/lib/jvm/zulu-8-amd64/bin/keytool -list -v -alias ca_cryptopro_2 -keystore /usr/lib/jvm/zulu-8-amd64/jre/lib/security/cacerts  -storepass changeit
+/** экспорт в харнилище корневый сертификатов cacert */
+/usr/lib/jvm/java-8-oracle/bin/keytool -exportcert -alias cryptopro2 -keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts -file "/home/psr/Рабочий стол/cryptopro.cer" -storepass changeit
+/** импорт в харнилище корневый сертификатов cacert */
+/usr/lib/jvm/java-8-oracle/bin/keytool  -importcert -trustcacerts -keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts -storepass changeit -noprompt -alias chainpsr0 -file "/home/psr/Рабочий стол/chainpsr0.cer"
+/** */
+/usr/lib/jvm/java-8-oracle/bin/keytool  -list  -keystore /usr/lib/jvm/java-8-oracle/jre/lib/security/cacerts -storepass changeit
+/*Установка личного сертификата:*/
+certmgr -inst -file <путь к файлу с сертификатом> -cont <имя контейнера>
+/*Установка стороннего сертификата:*/
+certmgr -inst -file <путь к файлу с сертификатом>
+/* Удаление пакета */
+dpkg -P cprocsp-stunnel
+
+find ./contracts/ -name '*f*' -printf "%h\n" | sort -u
+/** замена replace */
+find ./ -type f -exec sed -i 's/verify_req_rbo_order_redeem_reqres_/verify_req_rbo_/g' {} \;
+dpkg -l|egrep "cpro|pcsc"
+sudo dpkg --listfiles cprocsp-cpopenssl-devel
+sudo rm /var/lib/dpkg/info/cprocsp-rdr-jacarta-64.*
+/opt/cprocsp/sbin/amd64/cpconfig -ini '\config\Parameters\Rfc6125_NotStrict_ServerName_Check' -view
+
+/opt/cprocsp/bin/amd64/cryptcp -creatcert -exprt -provtype 80 -provname "Crypto-Pro GOST R 34.10-2001 KC1 CSP" -rdn 'E=srvstunnel@cbr.ru ,CN=stunnelserver' -cont '\\.\HDIMAGE\srv_stunnel' -certusage 1.3.6.1.5.5.7.3.1 -ku -du -ex -ca http://cryptopro.ru/certsrv
+
+/** 0.9.2342.19200300.100.1.1 */
+/opt/cprocsp/bin/amd64/cryptcp -creatrqst -dn "UID=22345200-abe8-4f60-90c8-0d43c5f6c0f5, E=boss@imperial.net, C=RU, CN=Иванов Иван Иванович, O=Банк Империал, SN=Иванов,G=Иван Иванович, L=Новосибирск" -provtype 80  -certusage "1.3.6.1.5.5.7.3.2" -exprt -nokeygen -both -ku -cont '\\.\HDIMAGE\imperial' /tmp/knvcert.req
+
+/opt/cprocsp/bin/amd64/cryptcp -creatrqst -dn "E=stunnel_v3@cbr.ru,C=RU, CN=175.20.128.17" -provtype 80  -certusage "1.3.6.1.5.5.7.3.1" -exprt -nokeygen -both -ku -cont '\\.\HDIMAGE\ip_srv_1' /tmp/tuncertip.req
+
+opt/cprocsp/bin/amd64/cryptcp -creatrqst -dn "E=stunnel_v3@cbr.ru,C=RU, CN=x" -provtype 80  -certusage "1.3.6.1.5.5.7.3.1" -exprt -nokeygen -both -ku -cont '\\.\HDIMAGE\xxx' /tmp/tuncertip.req
+
+/* check/trace ip*/
+lsof -i -a -p 61504
+
+-- -dn "E=ivanov@mail.mail,CN=Иванов Иван Иванович,SN=Иванов,G=Иван Иванович,C=RU,L=Калининград,ST=39 Калининградская обл.,street=Пр-т Победы 14 кв.3"
+
+/opt/cprocsp/bin/amd64/cryptcp -creatrqst -provtype 80  -certusage "1.3.6.1.5.5.7.3.4" -cont '\\.\HDIMAGE\test5' -exprt -both  -rdn "E=1@1.ru, C=RU, L=Moscow, O=1, OU=2, CN=3" /tmp/1.req
+
+https://www.cryptopro.ru/certsrv/certrqxt.asp
+/opt/cprocsp/bin/amd64/certmgr -inst -file ~/Загрузки/certnew.cer
+
+sudo sh ./ControlPane.sh /usr/lib/jvm/openjdk-8u40/jre >/dev/null 2>/dev/null
+sudo ls -lR / > qwer
+sudo sh ~/Desktop/source/jcp-2.0.40035/ControlPane.sh /usr/lib/jvm/openjdk-8u40/jre/
+
+
+/etc/init.d/cprocsp restart
+cat /var/log/syslog
+Управление списком надежных веб-узлов на Unix-платформах
+
+Для управления списком надежных веб-узлов в КриптоПро ЭЦП Browser plug-in на Unix-платформах служит страница /etc/opt/cprocsp/trusted_sites.html, входящая в состав дистрибутива КриптоПро ЭЦП Browser plug-in.
+
+Также, для просмотра списка надежных веб-узлов можно использовать команду:
+/opt/cprocsp/sbin/<arch>/cpconfig -ini "\local\Software\Crypto Pro\CAdESplugin\TrustedSites" -view
+Для добавления веб-узлов (например, http://mytrustedsite и http://myothertrustedsite) в список надежных можно использовать команду:
+/opt/cprocsp/sbin/<arch>/cpconfig -ini "\local\Software\Crypto Pro\CAdESplugin" -add multistring "TrustedSites" "http://mytrustedsite" "http://myothertrustedsite"
+Для очистки списка надежных веб-узлов можно использовать команду:
+/opt/cprocsp/sbin/<arch>/cpconfig -ini "\local\Software\Crypto Pro\CAdESplugin\TrustedSites" -delparam
+Добавление сайтов в список надежных-узлов для всех пользователей доступно используя комманду
+/opt/cprocsp/sbin/<arch>/cpconfig -ini "\config\cades\trustedsites" -add multistring "TrustedSites" "http://www.cryptopro.ru" "https://www.cryptopro.ru" 
+
+
+
+rabbitmqctl status
+rabbitmq-diagnostics --silent tls_versions
+
+ganache-cli -h 192.168.91.15 -p 7545 -e 10000 -l 2086062308 -i 1234
+sudo npm uninstall -g truffle
+$(dirname $(dirname $(update-alternatives --list javac))) 
+export  JAVA_HOME=/usr/lib/jvm/openjdk-8u40
+/** GLOBAL */
+echo "export PATH=$PATH:/new/path/variable" >> /etc/profile
+./web3j truffle generate  /home/psr/git/smart-contracts/build/contracts/Test.json -o /home/psr/git/repository/cgate_web3j/cgate_web3j/src/main/java  -p com.lab.cgate_web3j.smartcontracts
+
+
+~/work/src/github.com/ethereum/go-ethereum/build/bin$ geth --datadir "~/Library/LocalNode1" init ~/Library/LocalNode1/genesis.json
+/***** СНОС ЛИЦЕНЗИИ ****/
+/etc/.java/.systemPrefs/ru/CryptoPro/JCP/
+/** ПРОВЕРКИ */
+sudo /usr/lib/jvm/java-8-oracle/jre/bin/java ru.CryptoPro.JCP.tools.Check -all
+/** Проверка лицензии */
+/usr/lib/jvm/java-8-oracle/jre/bin/java ru.CryptoPro.JCP.tools.License
+
+
+mvn clean deploy -Dmaven.test.skip=true
+
+
+
+
+
+https://www.google.com/search?ei=pKp2XNHNNYSVmwXP_rvYCQ&q=%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82+%D0%B2+base+%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%BE%D0%B3%D0%BE+%D0%BA%D0%BB%D1%8E%D1%87%D0%B0++%D0%B2+linux&oq=%D1%8D%D0%BA%D1%81%D0%BF%D0%BE%D1%80%D1%82+%D0%B2+base+%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%BE%D0%B3%D0%BE+%D0%BA%D0%BB%D1%8E%D1%87%D0%B0++%D0%B2+linux&gs_l=psy-ab.3...117677.118479..119729...0.0..1.482.841.4j4-1......0....1..gws-wiz.......0i71.-RS-jedIbog
+
+Сервер должен запросить клиентский сертификат для установления защищенного соединения с двухсторонней аутентификацией
+(либо на клиенте - через плагин делаем ЭП под данными присланными с сервера (или случайно сгенерированными) и отправляем на сервер, который проверив ЭП - извлекает сертификат и необходимые сведения)
+На сервере: в базе - учетные записи пользователей, отпечаток сертификата и т.д.
+Проверяем по отпечатку, если нет такого: регистрация\отказ в доступе
+
+1)На сервере создаётся табличка с 2-мя полями - логин и отпечаток сертификата
+2)В эту табличку заносится логин vasya и отпечаток, например, AB445DDDDDDDDDDD
+3)Пользователь на клиенте (в браузере) подписывает какие-либо данные, например "hello world"
+4)Потом эти подписанные данные отправляются на сервер через POST-запрос
+5)Сервер, приняв эти данные, проверят подпись. После проверки доступны данные сертификата. Берём отпечаток сертификата.
+Пробегаемся по табличке и ищем совпадение. Если нашлось, то авторизуем пользователя.
+2. Проверять по CRL\OCSP.
+
+Здравствуйте.
+См. CAdES-javadoc.jar в дистрибутиве, метод setCertificateStore, пример использования есть в samples-sources.jar (в подаваемый в метод список добавляются объекты X509CertificateHolder).ssssssss
+sudo java -classpath "OCF.jar" ru.CryptoPro.JCP.KeyStore.OCF.Install -help
+/usr/lib/jvm/java-8-oracle/jre/bin/java -cp ./samples.jar ComLine.ComLine -help
+
+await contractInstance.methods.setRegisterCreature("abstractStorage","0x441cC6F47a3702b2511D6713e15Ae3b44B8Db2B7","0x0000000000000000000000000000000000000000").send({from:(await web3.eth.getAccounts())[0], gas:400000000})
+
+Angular 2 Template Reference Variable Example #var
+
+sudo ln -s  /usr/local/nvm/v12.13.1/bin/ganache-cli /usr/bin/ganache-cli
+
+
+sudo snap remove docker
+sudo find / -name "*docker*" -exec `rm -rf` {} +
+
+/** ENTRYPOINT vs cmd */
+ENTRYPOINT ["/bin/echo", "Hello"]
+CMD ["world"]
+when container runs as docker run -it <image> will produce output
+>Hello world
+but when container runs as docker run -it <image> John will result in
+
+docker cp ff518c72dd56:/usr/local/node/src .
+sudo docker image prune --all
+sudo docker rm $(sudo docker ps -a --no-trunc -q)
+sudo docker image ls
+sudo docker container ls
+sudo docker container stop 965e341d5f9f
+sudo docker container prune
+sudo docker rmi $(sudo docker images -a -q)
+sudo docker rmi cc6bcaaddd84
+sudo docker-compose up
+sudo docker ps -a     
+sudo docker build --tag=auth-dev .
+sudo docker run --publish=8080:8080 --rm=true --name=spring-auth-dev spring-auth-dev
+# to connect in server code need ip. For that docker network ls && docker network inspect {id_container}
+sudo docker network ls
+sudo docker network inspect 7c6365d1ecb9
+sudo docker inspect 7c6365d1ecb9
+# As of Docker v1.3 you can attach to a bash shell
+sudo docker exec -it  7c6365d1ecb9 bash
+sudo docker run -it 96b51778a13d bash -il
+sudo docker run --volume=/home/psr/cert/:/spring-auth/spring-auth/cert/ \ 
+                --volume=/home/psr/crl/:/spring-auth/spring-auth/crl/   \
+                --volume=/home/psr/storejcp/:/home/psr/storejcp/        \
+                --volume=/etc/.java/.systemPrefs/ru/CryptoPro/JCP/KeyStore/HDImage/:/etc/.java/.systemPrefs/ru/CryptoPro/JCP/KeyStore/HDImage/ \ 
+                --publish=8080:8080 --network=stunnel_net  --rm=true --name=auth-dev auth-dev
+                
+                
+sudo docker run --volume=/home/psr/cert/:/auth/auth/cert/ --volume=/home/psr/crl/:/auth/auth/crl/ --volume=/home/psr/storejcp/:/home/psr/storejcp/ --volume=/home/psr/cert_participant/:/auth/auth/cert_participant/ --volume=/etc/.java/.systemPrefs/ru/CryptoPro/JCP/KeyStore/HDImage/:/etc/.java/.systemPrefs/ru/CryptoPro/JCP/KeyStore/HDImage/ --publish=8081:8080 --network=auth_app  --rm=true --name=auth-dev auth-dev
+
+
+sudo docker run --volume=/home/sapphire/auth_proj/share_volume/cacert/:/auth/auth/cert/ --volume=/home/sapphire/auth_proj/share_volume/crl/:/auth/auth/crl/ --volume=/home/sapphire/auth_proj/sber/abs/proceeding/volume/container/:/home/psr/storejcp/ --volume=/home/sapphire/auth_proj/share_volume/setting_jcp/:/etc/.java/.systemPrefs/ru/CryptoPro/JCP/KeyStore/HDImage/ --expose=8080 --publish=8079:8080 --network=resources_static-network  --rm=true --name=auth-sber-proceeding auth-sber-proceeding
+
+sudo docker run --volume=/home/sapphire/auth_proj/share_volume/cacert/:/auth/auth/cert/ --volume=/home/sapphire/auth_proj/share_volume/crl/:/auth/auth/crl/ --volume=/home/sapphire/auth_proj/sber/abs/controller/volume/container/:/home/psr/storejcp/ --volume=/home/sapphire/auth_proj/share_volume/setting_jcp/:/etc/.java/.systemPrefs/ru/CryptoPro/JCP/KeyStore/HDImage/ --expose=8080 --publish=8081:8080 --network=resources_static-network  --rm=true --name=auth-sber-control auth-sber-control
+
+scp psr@192.168.91.3:/home/psr/git/auth/target/auth-0.0.1.RELEASE.jar /home/sapphire/auth_proj/sber/abs/controller/auth/target
+
+
+ssh sapphire@192.168.100.231
+scp psr@192.168.91.3:/home/psr/crl/certcrl.crl /opt/sapphire/volume/service/auth/crl/
+scp psr@192.168.91.3:/home/psr/cert/cert /opt/node-swarm/vol-sapphirus/auth/cert/
+scp /tmp/store sapphire@pnode1-h2:/opt/sapphire/volume/service/auth/cert_participant/
+http://192.168.100.231:4040
+scp ./zzz.sql psr@192.168.91.3:/home/psr/git/culet_exec/dbs/dumps/tests/
+scp ./dump_process.sql psr@192.168.91.3:/home/psr/git/culet_exec/dbs/dumps/tests/
+
+
+
+docker logs {idcont} --follow
+docker build -f Dockerfile_gost_example_com -t gost-example-com .
+docker run -d --rm --network=gost-network -p 8123:80 -p 8125:443 --name gost.example.com gost-example-com
+
+/** Удалить nodejs */
+sudo rm -rf /usr/local/bin/npm /usr/local/share/man/man1/node* /usr/local/lib/dtrace/node.d ~/.npm ~/.node-gyp /opt/local/bin/node opt/local/include/node /opt/local/lib/node_modules 
+sudo rm -rf /usr/local/lib/node* 
+sudo rm -rf /usr/local/include/node* 
+sudo rm -rf /usr/local/bin/node*
+
+/** apt */
+/etc/apt/sources.list
+/etc/apt/sources.list.d
+
+apt list --installed | grep nvidia
+/** Насторйка ssh без пароля */
+ssh-copy-id sapphire@192.168.191.234
+
+/** DNS */
+/etc/resolv.conf
+
+sudo usermod -aG docker psr
+
+
+/var/log/Xorg.0.log
+startx
+- delete all files and folders from /home/user/.kde4 and /root/.kde4
+- Start ksmserver from runlevel 3 (error!)
+- downgrade kdebase version (mad idea)
+xinit startkde
+ /etc/X11/xorg.conf
+ 
+/** список файлов */ 
+ tar -tvf ./home_psr_3.tar.gz 'home/psr/Desktop/source'
+ 
+/** certain file in current directory */
+tar -xvf /home/psr/home_psr_3.tar.gz home/psr/Desktop/
+/** create */
+tar czf new-tar-file-name.tar.gz file-or-folder-to-archive
+
+/** extract*/
+tar -xzf tar-file-name.tar.gz
+
+/** chekck jre */
+https://dev.to/thegroo/install-and-manage-multiple-java-versions-on-linux-using-alternatives-5e93
+
+autocannon --debug -c 10 -d 10 -m POST -b '{"request": {"data":"dGVzdA=="},"request_type": "sign-sign"}'-H "Content-Type: application/json" http://pnode2-h2:4040/authservice/detach/sign
+/** количество потоков */
+top -H -p (process id)
+
+/** clean cache */
+free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+
+/** Clear PageCache only */
+sync; echo 1 > /proc/sys/vm/drop_caches
+
+/** Clear dentries and inodes. */
+sync; echo 2 > /proc/sys/vm/drop_caches
+
+
+
+
+
+
+
+/opt/cprocsp/sbin/amd64/stunnel_thread /etc/opt/cprocsp/stunnel.conf 
+kate /var/opt/cprocsp/tmp/stunnel.log 
+ps -A | grep stun
+sudo netstat -nlp46
+
+cat /usr/local/stunnel/etc/stunnel/stunnel.conf-sample
+openssl req -new -nodes -x509 -out stunnel/stunnel.pem -keyout /etc/stunnel/stunnel.pem
+openssl engine
+openssl ciphers
+https://vk.com/audios16429899
+
