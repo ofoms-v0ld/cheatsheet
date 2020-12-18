@@ -1,4 +1,4 @@
-﻿every once in a (the) while
+every once in a (the) while
 https://medium.com/@DylanKerler1/how-arc-works-in-rust-b06192acd0a6
 
 codility.com
@@ -37,6 +37,10 @@ func main() {
 	fmt.Println(v)
 }
 
+sudo apt install cifs-utils
+sudo mkdir /mnt/fs
+sudo mount -t cifs -o user=${USER},uid=$(id -u),gid=$(id -g) //fs.lab.local/Share /mnt/fs
+
 
 ./geth --datadir "~/Library/LocalNode1" --networkid 1234 --port 11111 --nodiscover console
 ./geth --datadir "~/Library/LocalNode2" --networkid 1234 --port 11112 --nodiscover console
@@ -47,6 +51,8 @@ git reset --hard HEAD~1
 git log --graph --oneline --all
 /** diffrent file between two commits  */
 git diff d5a6f4f985d643d53df0228fc951e1511ceee21d f5fc1cc1acb2959da6e18dc57e97ac5a581054ca  -- ./test/mutable_logic/buisness_layout/Accounts.spec.js
+/** выводит все комиты по ключу */
+git log -S accept_ttl_sec --source --all
 
 /** kaspersky */
 /etc/init.d/kesl-supervisor stop
@@ -69,10 +75,21 @@ git diff --staged config/config.json
 git reset HEAD^   config/config.json   (сброс файла при мерже)
 /** empty-branch */
 git checkout --orphan empty-branch
+/** before after line */
+grep -B 3 -A 2 foo README.txt
+
+/**  clone certain subfolder */
+git remote add origin https://github.com/jklepatch/eattheblocks.git
+git config core.sparsecheckout true
+echo "screencast/251-atomic-swap-ethereum-bsc/" >> .git/info/sparse-checkout
+git pull origin master
 
 
 npm i -g npm-check-updates & /usr/local/nvm/v12.13.1/bin/ncu -u
+npm install -g npm
 
+/** count lines */
+wc -l `find -name '*.sol'` 
 
 
 package main
@@ -132,6 +149,9 @@ top -o %MEM
 
 /** тут прописываются модули поддержки */
 /usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents
+
+/** vps1 */
+ssh root@5.101.51.179
 
 /** тут вроде лицензия */
 /etc/opt/cprocsp/
