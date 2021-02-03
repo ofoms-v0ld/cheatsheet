@@ -91,6 +91,10 @@ npm install -g npm
 /** count lines */
 wc -l `find -name '*.sol'` 
 
+/** size folder*/
+sudo du -sh * | sort -h
+
+
 
 package main
 
@@ -274,6 +278,9 @@ sudo sh ./ControlPane.sh /usr/lib/jvm/openjdk-8u40/jre >/dev/null 2>/dev/null
 sudo ls -lR / > qwer
 sudo sh ~/Desktop/source/jcp-2.0.40035/ControlPane.sh /usr/lib/jvm/openjdk-8u40/jre/
 
+/* vscale */
+sudo openvpn --config ./base1.ovpn --verb 5
+
 
 /etc/init.d/cprocsp restart
 cat /var/log/syslog
@@ -348,14 +355,16 @@ sudo ln -s  /usr/local/nvm/v12.13.1/bin/ganache-cli /usr/bin/ganache-cli
 
 sudo snap remove docker
 sudo find / -name "*docker*" -exec `rm -rf` {} +
-
+export LC_ALL=C
 /** ENTRYPOINT vs cmd */
 ENTRYPOINT ["/bin/echo", "Hello"]
 CMD ["world"]
 when container runs as docker run -it <image> will produce output
 >Hello world
 but when container runs as docker run -it <image> John will result in
-
+/*delete all*/
+docker system prune -a
+docker builder prune
 docker cp ff518c72dd56:/usr/local/node/src .
 sudo docker image prune --all
 sudo docker rm $(sudo docker ps -a --no-trunc -q)
@@ -462,8 +471,11 @@ sync; echo 1 > /proc/sys/vm/drop_caches
 /** Clear dentries and inodes. */
 sync; echo 2 > /proc/sys/vm/drop_caches
 
-
-
+/* start geth bsc binance*/
+nohup ./build/bin/geth --ws --wsaddr 0.0.0.0 --config ./config.toml --datadir ./node --pprofaddr 0.0.0.0 --metrics --pprof &
+/*count block */
+sudo ./build/bin/geth attach /storage/bsc/node/geth.ipc
+eth.syncing.highestBlock - eth.syncing.currentBlock
 
 
 
@@ -479,3 +491,25 @@ openssl engine
 openssl ciphers
 https://vk.com/audios16429899
 
+1039  curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":56}'  localhost:8545
+ 1040  curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":56}'  localhost:8575
+ 1041  tmux attach -t 1
+ 1042  tmux attach -t 2
+ 1043  tmux attach -t 3
+ 1044  tmux attach -t 0
+ 1045  curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":97}'  localhost:8575
+ 1046  tail -f ./node/bsc.log
+ 1047  history
+ 1048  tmux attach -t 0
+ 1049  su root
+ 1050  tail -f ./node/bsc.log
+ 1051  nano  ./node/bsc.log
+ 1052  ls -a
+ 1053  history
+ 1054  export HISTTIMEFORMAT='%F %T '
+
+ echo "DATABASE_URL=postgresql://ubuntu:ubuntu@localhost:5432/ubuntu?sslmode=disable" >> ~/.chainlink-rinkeby/.env
+ cd ~/.chainlink-rinkeby && docker run --network host  -p 6688:6688 -v ~/.chainlink-rinkeby:/chainlink -it --env-file=.env smartcontract/chainlink:0.9.4 local n
+ cd ~/.chainlink-bsc && docker run --network host -p 6688:6688 -v ~/.chainlink-bsc:/chainlink -it --env-file=.env smartcontract/chainlink:0.9.8 local n
+
+docker run -d --network host  -p 6688:6688 -v ~/.chainlink-bsc:/chainlink -it --env-file=.env smartcontract/chainlink:0.9.8 local n -p /chainlink/chainlink.pwd -a /chainlink/api.pwd
