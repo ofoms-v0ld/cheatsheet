@@ -54,6 +54,9 @@ git diff d5a6f4f985d643d53df0228fc951e1511ceee21d f5fc1cc1acb2959da6e18dc57e97ac
 /** выводит все комиты по ключу */
 git log -S accept_ttl_sec --source --all
 
+git config user.name "v0ld-dev"
+git config user.email v0ld@email.com
+
 /** kaspersky */
 /etc/init.d/kesl-supervisor stop
 systemctl restart kesl-supervisor
@@ -147,6 +150,8 @@ lsb-cprocsp-pkcs11 - Поддержка PKCS11
 
 ps -A | grep stu
 grep -R --exclude-dir=node_modules 'some pattern' /path/to/search
+grep -ircl  --exclude-dir={node_modules,build,git,.git} --exclude=*.{json,go}  'getTransactionReceipt' ./
+
 sudo netstat -nlp46
 top -o %MEM
 -XX:ExplicitGCInvokesConcurent
@@ -451,6 +456,8 @@ xinit startkde
 tar -xvf /home/psr/home_psr_3.tar.gz home/psr/Desktop/
 /** create */
 tar czf new-tar-file-name.tar.gz file-or-folder-to-archive
+/** with passwd */
+ zip -e file.zip ./ss
 
 /** extract*/
 tar -xzf tar-file-name.tar.gz
