@@ -456,8 +456,6 @@ xinit startkde
 tar -xvf /home/psr/home_psr_3.tar.gz home/psr/Desktop/
 /** create */
 tar czf new-tar-file-name.tar.gz file-or-folder-to-archive
-/** with passwd */
- zip -e file.zip ./ss
 
 /** extract*/
 tar -xzf tar-file-name.tar.gz
