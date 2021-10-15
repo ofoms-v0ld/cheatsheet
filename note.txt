@@ -280,6 +280,7 @@ sudo sh ~/Desktop/source/jcp-2.0.40035/ControlPane.sh /usr/lib/jvm/openjdk-8u40/
 
 /* vscale */
 sudo openvpn --config ./base1.ovpn --verb 5
+sudo openvpn --config ./client.conf
 
 
 /etc/init.d/cprocsp restart
@@ -354,7 +355,7 @@ sudo ln -s  /usr/local/nvm/v12.13.1/bin/ganache-cli /usr/bin/ganache-cli
 
 
 sudo snap remove docker
-sudo find / -name "*docker*" -exec `rm -rf` {} +
+sudo find / -name "docker" -exec rm -rf {} + 2>/dev/null 
 export LC_ALL=C
 /** ENTRYPOINT vs cmd */
 ENTRYPOINT ["/bin/echo", "Hello"]
@@ -429,6 +430,7 @@ sudo rm -rf /usr/local/bin/node*
 apt list --installed | grep nvidia
 /** Насторйка ssh без пароля */
 ssh-copy-id sapphire@192.168.191.234
+ssh-agent bash -c 'ssh-add /home/ubuntu/.ssh/id_rsa_2; git clone  git@github.com:digiu-ai/eth-contracts.git'
 
 /** DNS */
 /etc/resolv.conf
@@ -472,7 +474,7 @@ sync; echo 1 > /proc/sys/vm/drop_caches
 sync; echo 2 > /proc/sys/vm/drop_caches
 
 /* start geth bsc binance*/
-nohup ./build/bin/geth --ws --wsaddr 0.0.0.0 --config ./config.toml --datadir ./node --pprofaddr 0.0.0.0 --metrics --pprof &
+nohup geth --ws --ws.addr 0.0.0.0 --ws.port 8576 --config ./config.toml --datadir ./node  --cache 18000 --rpc.allow-unprotected-txs --txlookuplimit 0 > nohup.out 2> nop.err < /dev/null 
 /*count block */
 sudo ./build/bin/geth attach /storage/bsc/node/geth.ipc
 eth.syncing.highestBlock - eth.syncing.currentBlock
@@ -513,3 +515,20 @@ https://vk.com/audios16429899
  cd ~/.chainlink-bsc && docker run --network host -p 6688:6688 -v ~/.chainlink-bsc:/chainlink -it --env-file=.env smartcontract/chainlink:0.9.8 local n
 
 docker run -d --network host  -p 6688:6688 -v ~/.chainlink-bsc:/chainlink -it --env-file=.env smartcontract/chainlink:0.9.8 local n -p /chainlink/chainlink.pwd -a /chainlink/api.pwd
+ await web3.eth.sendTransaction({from: '0x5b0901335801507889d1Ac3472CB6c152F82c939', to: '0x06d169c177d0B25e82DA6B2eA761CAce8b1b1713', value: web3.utils.toWei('2', 'ether')})
+
+ sudo /mnt/hdd1/Downloads/ledger-live-desktop-2.25.1-linux-x86_64.AppImage --no-sandbox
+
+/*clean*/
+sudo journalctl --vacuum-time=2d
+journalctl --disk-usage
+1. du -csh /var/cache/apt
+2. sudo apt-get clean
+
+/*space*/
+sudo du -h --max-depth=1  /mnt/hdd1/
+/*scan ports*/
+nmap -sT 95.217.104.54
+
+
+ tail -f /var/lib/docker/plugins/d930f92be571229ca56246db082b491002a90ba0a3e1ac5b6a84fdbf3316704c/rootfs/var/log/docker/*/*.log | egrep "LEADER IS|ReceiveRequestV2 tx|error|LEADER going"
