@@ -54,6 +54,9 @@ git diff d5a6f4f985d643d53df0228fc951e1511ceee21d f5fc1cc1acb2959da6e18dc57e97ac
 /** выводит все комиты по ключу */
 git log -S accept_ttl_sec --source --all
 
+git config user.name "v0ld-dev"
+git config user.email v0ld@email.com
+
 /** kaspersky */
 /etc/init.d/kesl-supervisor stop
 systemctl restart kesl-supervisor
@@ -147,6 +150,8 @@ lsb-cprocsp-pkcs11 - Поддержка PKCS11
 
 ps -A | grep stu
 grep -R --exclude-dir=node_modules 'some pattern' /path/to/search
+grep -ircl  --exclude-dir={node_modules,build,git,.git} --exclude=*.{json,go}  'getTransactionReceipt' ./
+
 sudo netstat -nlp46
 top -o %MEM
 -XX:ExplicitGCInvokesConcurent
@@ -515,6 +520,7 @@ https://vk.com/audios16429899
  cd ~/.chainlink-bsc && docker run --network host -p 6688:6688 -v ~/.chainlink-bsc:/chainlink -it --env-file=.env smartcontract/chainlink:0.9.8 local n
 
 docker run -d --network host  -p 6688:6688 -v ~/.chainlink-bsc:/chainlink -it --env-file=.env smartcontract/chainlink:0.9.8 local n -p /chainlink/chainlink.pwd -a /chainlink/api.pwd
+<<<<<<< HEAD
  await web3.eth.sendTransaction({from: '0x5b0901335801507889d1Ac3472CB6c152F82c939', to: '0x06d169c177d0B25e82DA6B2eA761CAce8b1b1713', value: web3.utils.toWei('2', 'ether')})
 
  sudo /mnt/hdd1/Downloads/ledger-live-desktop-2.25.1-linux-x86_64.AppImage --no-sandbox
@@ -532,3 +538,31 @@ nmap -sT 95.217.104.54
 
 
  tail -f /var/lib/docker/plugins/d930f92be571229ca56246db082b491002a90ba0a3e1ac5b6a84fdbf3316704c/rootfs/var/log/docker/*/*.log | egrep "LEADER IS|ReceiveRequestV2 tx|error|LEADER going"
+=======
+
+
+SW39cqnbEp6auGC
+PUW9gme4FW9rWJKchdeV_u
+tWMkPrMwRPVcNMkT9iWT_u
+162.55.39.13 VEFk9khUrxjFUWKLPsgW_u
+
+
+
+adduser ubuntu
+usermod -aG sudo ubuntu
+su - ubuntu
+
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+source ~/.profile
+nvm install node
+
+wget https://dl.google.com/go/go1.16.4.linux-amd64.tar.gz
+sudo tar -C /opt -xzf go1.16.4.linux-amd64.tar.gz
+export PATH=$PATH:/opt/go/bin
+~/.bashrc
+
+/** clean golang */
+~/.cache/JetBrains
+~/.config/JetBrains
+~/.java/userPrefc
+~/.local/share/JetBrains
