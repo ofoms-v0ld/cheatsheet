@@ -539,3 +539,9 @@ wget https://dl.google.com/go/go1.16.4.linux-amd64.tar.gz
 sudo tar -C /opt -xzf go1.16.4.linux-amd64.tar.gz
 export PATH=$PATH:/opt/go/bin
 ~/.bashrc
+
+/** clean golang */
+~/.cache/JetBrains
+~/.config/JetBrains
+~/.java/userPrefc
+~/.local/share/JetBrains
